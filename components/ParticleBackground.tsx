@@ -139,6 +139,15 @@ const ParticleBackground: React.FC = () => {
             animationFrameId = requestAnimationFrame(animate);
         };
         
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animationFrameId);
+            } else {
+                animate(); // Restart the animation loop
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
         init();
         animate();
 
@@ -147,6 +156,7 @@ const ParticleBackground: React.FC = () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
             document.body.removeEventListener('mouseleave', handleMouseLeave);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
             cancelAnimationFrame(animationFrameId);
         };
 

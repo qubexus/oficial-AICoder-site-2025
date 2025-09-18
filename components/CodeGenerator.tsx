@@ -83,6 +83,12 @@ const CodeGenerator: React.FC<CodeGeneratorProps> = ({ content }) => {
                         disabled={isLoading}
                         className="relative inline-flex items-center justify-center px-8 py-3 bg-[#F97316] text-[#E2E8F0] font-bold rounded-lg group transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-[#F97316]/40 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 hover:brightness-110"
                     >
+                        {isLoading && (
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        )}
                         <span className="relative">
                             {isLoading ? 'Generating...' : 'Generate Code'}
                         </span>
@@ -97,7 +103,42 @@ const CodeGenerator: React.FC<CodeGeneratorProps> = ({ content }) => {
             </div>
         )}
 
-        {generatedCode && (
+        {isLoading && (
+            <div className="mt-8 max-w-3xl mx-auto animate-pulse" aria-label="Generating code...">
+                <div className="flex justify-between items-center mb-4">
+                    <div className="h-7 bg-slate-700 rounded w-48"></div>
+                    <div className="h-9 bg-slate-700 rounded w-24"></div>
+                </div>
+                <div className="rounded-lg border border-slate-700 bg-slate-800 p-4 space-y-3 h-64">
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-4 bg-slate-700 rounded-sm"></div>
+                        <div className="h-4 bg-slate-700 rounded w-5/6"></div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-4 bg-slate-700 rounded-sm"></div>
+                        <div className="h-4 bg-slate-700 rounded w-full"></div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-4 bg-slate-700 rounded-sm"></div>
+                        <div className="h-4 bg-slate-700 rounded w-3/4"></div>
+                    </div>
+                     <div className="pl-4 flex items-center gap-2">
+                        <div className="w-6 h-4 bg-slate-700 rounded-sm"></div>
+                        <div className="h-4 bg-slate-700 rounded w-4/6"></div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-4 bg-slate-700 rounded-sm"></div>
+                        <div className="h-4 bg-slate-700 rounded w-5/6"></div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-6 h-4 bg-slate-700 rounded-sm"></div>
+                        <div className="h-4 bg-slate-700 rounded w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        )}
+
+        {!isLoading && generatedCode && (
             <div className="mt-8 max-w-3xl mx-auto" aria-live="polite">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-semibold text-[#E2E8F0]">Generated Code:</h3>

@@ -197,17 +197,21 @@ export const aiModels: AIModel[] = [
 // --- Data for Hero.tsx ---
 
 export interface NewsItem {
+  id: number;
   title: string;
   summary: string;
   imageUrl: string;
   fullArticle: string;
+  creationDate: string;
 }
 
 export const defaultNewsData: NewsItem[] = [
   {
+    id: 1,
     title: "The Evolution from AI Models to Autonomous Agents",
     summary: "AI is transforming from passive tools into proactive, autonomous agents that anticipate needs and solve entire problems.",
     imageUrl: "https://picsum.photos/seed/news1/400/400",
+    creationDate: "2024-07-15T10:00:00Z",
     fullArticle: `Artificial intelligence is undergoing a truly exciting transformation. In the past, AI tools acted like simple calculators: they waited for a specific command and then executed it. Think of old chatbots or smart assistants—they only did something when you told them to. But lately, AI is entering a new phase, where it acts not just as a tool, but more like a proactive digital assistant that tries to anticipate your needs and solve entire problems, not just single tasks.
 
 From Passive Tools to Autonomous Agents
@@ -215,35 +219,45 @@ From Passive Tools to Autonomous Agents
 Until recently, most AI solutions would only work when asked: answering questions, drafting emails, or finding information, but all triggered by you. The next step is AI "agents" — systems that can decide for themselves when and how to act. They watch what’s happening, analyze your goals, and step in to help even before you ask. It’s a huge change, moving beyond just following orders to truly collaborating with you.`
   },
   {
+    id: 2,
     title: "Beyond Words: How AI is Growing Senses to Perceive Our World",
     summary: "The next frontier in AI is multimodality—teaching machines to see, hear, and read simultaneously to understand context like never before.",
     imageUrl: "https://picsum.photos/seed/news2/400/400",
+    creationDate: "2024-07-18T14:30:00Z",
     fullArticle: `For years, we’veknown Artificial Intelligence as a specialist. One AI could master language, becoming a brilliant writer or a flawless translator. Another could master vision, identifying objects in photos with superhuman accuracy. A third could master sound, transcribing speech or composing music. They were powerful, but they lived in separate, silent worlds. An AI that could write a poem about a sunset couldn't actually see one.
 
 That era is ending. The next frontier in artificial intelligence isn’t just about making AI smarter, but about making it more perceptive. Welcome to the world of Multimodal AI, a groundbreaking evolution that is teaching machines to see, hear, and read—all at the same time. It’s an AI that doesn’t just process information; it experiences it in a way that is profoundly closer to our own.`
   },
   {
+    id: 3,
     title: "The Ethical Debate Around Proactive AI Assistants",
     summary: "As AI agents become more proactive, discussions around privacy, consent, and decision-making authority are intensifying.",
     imageUrl: "https://picsum.photos/seed/news3/400/400",
+    creationDate: "2024-07-12T09:00:00Z",
     fullArticle: "The concept of an AI agent that anticipates your needs and acts on your behalf is compelling, but it also raises significant ethical questions. Where is the line between a helpful assistant and an intrusive overseer? Tech companies and ethicists are grappling with how to design these systems to respect user autonomy and privacy.\n\nKey concerns include data privacy, as these agents require deep access to personal information to be effective, and the potential for biased decision-making based on the data they are trained on. Establishing clear guidelines for transparency and user control is crucial to building trust and ensuring these powerful tools are used responsibly."
   },
   {
+    id: 4,
     title: "AI Agents in Scientific Research: A New Era of Discovery",
     summary: "Scientists are now deploying AI agents to analyze massive datasets, formulate hypotheses, and even design experiments.",
     imageUrl: "https://picsum.photos/seed/news4/400/400",
+    creationDate: "2024-07-20T11:00:00Z",
     fullArticle: "In the world of scientific research, the sheer volume of data being generated can be overwhelming for human researchers to analyze. AI agents are stepping in to accelerate the pace of discovery, capable of sifting through petabytes of data to identify patterns and correlations that might otherwise be missed.\n\nThese agents are not just data crunchers; they are becoming collaborative partners in the scientific process. Some advanced systems can formulate novel hypotheses based on existing literature and then propose experiments to test them. This is dramatically speeding up research cycles in fields like drug discovery, materials science, and climate modeling."
   },
   {
+    id: 5,
     title: "Personalized Education Powered by AI Learning Agents",
     summary: "AI-driven tutoring agents are creating adaptive learning paths tailored to each student's individual pace and style.",
     imageUrl: "https://picsum.photos/seed/news5/400/400",
+    creationDate: "2024-06-30T16:00:00Z",
     fullArticle: "The one-size-fits-all model of education is being challenged by the advent of personalized AI learning agents. These sophisticated tutors can assess a student's strengths and weaknesses in real-time, providing customized exercises, explanations, and encouragement to help them master new concepts.\n\nUnlike static educational software, these agents create a dynamic and interactive learning experience. If a student is struggling with a particular topic, the agent can offer alternative explanations or break the problem down into simpler parts."
   },
   {
+    id: 6,
     title: 'AI in Education: Revolutionizing Learning Experiences',
     summary: 'Examines how AI is personalizing education, automating administrative tasks, and creating new learning opportunities.',
     imageUrl: 'https://picsum.photos/seed/news6/400/400',
+    creationDate: "2024-07-05T18:00:00Z",
     fullArticle: `Artificial Intelligence is poised to transform the educational landscape. AI-powered tools can personalize learning paths for individual students, adapting to their unique pace and style. This adaptive learning approach can help students master complex subjects more effectively by providing targeted support where they need it most.
 
 Beyond personalized instruction, AI is also streamlining administrative tasks for educators. Automated grading systems, intelligent scheduling tools, and AI assistants can free up teachers' time, allowing them to focus more on student interaction and pedagogical development.`
@@ -477,6 +491,12 @@ export const testimonials = [
 
 // --- Data for Team.tsx ---
 export const teamMembers = [
+  {
+    name: 'Piotr "JayJay" Piasecki',
+    title: 'Founder & AI Visionary',
+    bio: "Piotr is the driving force behind our mission. With a passion for responsible AI development, he sets the company's strategic vision and inspires the team to push the boundaries of generative technology.",
+    imageUrl: 'https://raw.githubusercontent.com/qubexus/Galeria-grafik/main/1757379164090.jpg',
+  },
   {
     name: 'Dr. Evelyn Reed',
     title: 'Founder & Lead AI Ethicist',

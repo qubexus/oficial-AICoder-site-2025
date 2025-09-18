@@ -48,8 +48,8 @@
           }
         }
         
-        .animate-in { animation: enter forwards; }
-        .animate-out { animation: exit forwards; }
+        .animate-in { animation: enter forwards; will-change: transform, opacity; }
+        .animate-out { animation: exit forwards; will-change: transform, opacity; }
         
         .fade-in-0 { --tw-enter-opacity: 0; }
         .fade-out-0 { --tw-exit-opacity: 0; }
@@ -62,12 +62,38 @@
         .duration-500 { animation-duration: 500ms; }
         .ease-out { animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
         
-        @keyframes subtle-pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(167, 139, 250, 0); }
+        /* More performant pulse animation using transform and opacity */
+        .pulse-effect {
+            position: relative;
+            z-index: 1; /* Ensure dot is above the pulse */
         }
-        .animate-subtle-pulse {
-            animation: subtle-pulse 2s infinite;
+        .pulse-effect::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background-color: #A78BFA;
+            z-index: -1; /* Place pulse behind the dot */
+            animation: subtle-pulse-transform 2s infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes subtle-pulse-transform {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            70% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
         }
 
         /* Typing animation */
@@ -88,6 +114,27 @@
           animation: 
             typing 2.5s steps(22, end),
             blink-caret .75s step-end infinite;
+        }
+
+        /* Page Transition Animations */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(1rem); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+          from { opacity: 1; transform: translateY(0); }
+          to { opacity: 0; transform: translateY(1rem); }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 300ms ease-out forwards;
+          will-change: transform, opacity;
+        }
+
+        .animate-fade-out {
+          animation: fadeOut 300ms ease-in forwards;
+          will-change: transform, opacity;
         }
     </style>
     <script type="importmap">

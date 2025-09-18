@@ -46,7 +46,30 @@ const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animationState, setAnimationState] = useState<'in' | 'out'>('in');
     
-    const news = defaultNewsData;
+    // Sort state for news articles
+    const [sortOrder, setSortOrder] = useState('date-desc'); // Default to newest first
+
+    const getSortedNews = useCallback((order: string): NewsItem[] => {
+        const newsCopy = [...defaultNewsData];
+        switch (order) {
+            case 'date-asc':
+                return newsCopy.sort((a, b) => new Date(a.creationDate).getTime() - new Date(b.creationDate).getTime());
+            case 'title-asc':
+                return newsCopy.sort((a, b) => a.title.localeCompare(b.title));
+            case 'title-desc':
+                return newsCopy.sort((a, b) => b.title.localeCompare(a.title));
+            case 'date-desc':
+            default:
+                return newsCopy.sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
+        }
+    }, []);
+    
+    const [sortedNews, setSortedNews] = useState<NewsItem[]>(() => getSortedNews(sortOrder));
+    
+    useEffect(() => {
+        setSortedNews(getSortedNews(sortOrder));
+    }, [sortOrder, getSortedNews]);
+
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalClosing, setIsModalClosing] = useState(false);
@@ -236,13 +259,34 @@ const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
 
                 <div className="mt-8">
                     <div className="bg-slate-900/50 backdrop-blur-xl p-6 rounded-xl border border-slate-700 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]">
-                        <h3 className="text-base xl:text-lg font-semibold text-[#E2E8F0] mb-6 text-center">{content.aiModelsText}</h3>
+                        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-6 gap-4">
+                            <h3 className="text-base xl:text-lg font-semibold text-[#E2E8F0] flex-shrink-0">{content.aiModelsText}</h3>
+                            <div className="relative">
+                                <label htmlFor="sort-news" className="sr-only">Sort articles</label>
+                                <select
+                                    id="sort-news"
+                                    value={sortOrder}
+                                    onChange={(e) => setSortOrder(e.target.value)}
+                                    className="bg-slate-800/80 border border-slate-700 text-[#E2E8F0] text-sm rounded-lg focus:ring-2 focus:ring-[#F97316] focus:border-[#F97316] block w-full pl-3 pr-8 py-2 appearance-none transition-colors duration-300"
+                                    aria-label="Sort articles"
+                                >
+                                    <option value="date-desc">Newest First</option>
+                                    <option value="date-asc">Oldest First</option>
+                                    <option value="title-asc">Title (A-Z)</option>
+                                    <option value="title-desc">Title (Z-A)</option>
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-[#94A3B8]">
+                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
                          <div className="flex-1 flex flex-col justify-center">
                             <ErrorBoundary>
                                 <div ref={newsContainerRef} className="columns-1 md:columns-2 lg:columns-3 gap-6">
-                                    {news.map((item, index) => (
+                                    {sortedNews.map((item, index) => (
                                         <div
-                                            key={index}
+                                            key={item.id}
                                             className={`group bg-slate-900/50 backdrop-blur-xl rounded-lg p-4 flex items-start gap-4 break-inside-avoid mb-6 border border-slate-700 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] transition-all duration-500 ease-out hover:border-[#F97316]/50 hover:shadow-lg hover:shadow-black/30 hover:-translate-y-1 ${isNewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                                             style={{ transitionDelay: `${index * 100}ms` }}
                                         >

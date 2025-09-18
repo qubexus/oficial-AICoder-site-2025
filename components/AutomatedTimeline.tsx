@@ -109,7 +109,7 @@ const AutomatedTimeline: React.FC<AutomatedTimelineProps> = ({ onIndexChange, da
 
                                 return (
                                     <div key={index} className="flex flex-col items-center relative pt-4 xl:pt-5 group cursor-pointer">
-                                        <div className={`w-3 h-3 xl:w-4 xl:h-4 rounded-full transition-all duration-300 ease-in-out group-hover:scale-125 group-hover:bg-[#A78BFA] ${index <= activeIndex ? 'bg-[#A78BFA]' : 'bg-[#334155]'} ${index === activeIndex && !isPaused ? 'animate-subtle-pulse' : ''}`}>
+                                        <div className={`w-3 h-3 xl:w-4 xl:h-4 rounded-full transition-all duration-300 ease-in-out group-hover:scale-125 group-hover:bg-[#A78BFA] ${index <= activeIndex ? 'bg-[#A78BFA]' : 'bg-[#334155]'} ${index === activeIndex && !isPaused ? 'pulse-effect' : ''}`}>
                                         </div>
                                         <span className={`absolute top-8 xl:top-10 text-[11px] sm:text-xs xl:text-sm font-semibold transition-all duration-300 ease-in-out group-hover:text-[#A78BFA] group-hover:scale-110 ${index === activeIndex ? 'text-[#E2E8F0]' : 'text-[#94A3B8]'} ${positionClass}`}>
                                             {item.year}

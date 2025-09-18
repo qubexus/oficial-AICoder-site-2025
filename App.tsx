@@ -1,36 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
-import Admin from './site/Admin';
-import Stats from './components/Stats';
-import Testimonials from './components/Testimonials';
-import Timeline from './components/Timeline';
-import Academy from './site/Academy';
-import AboutUs from './site/AboutUs';
-import Team from './site/Team';
-import Contact from './site/Contact';
 import ParticleBackground from './components/ParticleBackground';
 import type { AppContent } from './types';
 
+// Lazy load page components for better performance via code splitting
+const Admin = React.lazy(() => import('./site/Admin'));
+const Academy = React.lazy(() => import('./site/Academy'));
+const AboutUs = React.lazy(() => import('./site/AboutUs'));
+const Team = React.lazy(() => import('./site/Team'));
+const Contact = React.lazy(() => import('./site/Contact'));
+
+// Lazy load below-the-fold homepage sections
+const Stats = React.lazy(() => import('./components/Stats'));
+const Testimonials = React.lazy(() => import('./components/Testimonials'));
+const Timeline = React.lazy(() => import('./components/Timeline'));
+
+// A visually appealing loader for suspended components
+const PageLoader: React.FC = () => (
+  <div className="flex justify-center items-center min-h-[calc(100vh-12rem)]" role="status" aria-label="Loading page content">
+    <svg className="animate-spin h-16 w-16 text-[#F97316]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  </div>
+);
+
+// A loader for lazy-loaded sections to prevent layout shift and indicate loading.
+const SectionLoader: React.FC = () => (
+    <div className="flex justify-center items-center min-h-[50vh]" role="status" aria-label="Loading section content">
+        <svg className="animate-spin h-12 w-12 text-[#F97316]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+    </div>
+);
+
+const getNormalizedHash = (hash: string): string => {
+    if (['', '#'].includes(hash)) {
+        return '#/';
+    }
+    return hash;
+};
+
 const App: React.FC = () => {
-  // Simple hash-based routing
-  const getHash = () => window.location.hash || '#/';
-  const [page, setPage] = useState(getHash());
+  // Simple hash-based routing. We normalize the hash to prevent loops.
+  const [page, setPage] = useState(() => getNormalizedHash(window.location.hash));
+  const [displayedPage, setDisplayedPage] = useState(page);
+  const [animationClass, setAnimationClass] = useState('animate-fade-in');
   const [isScrollButtonVisible, setIsScrollButtonVisible] = useState(false);
 
   // Function to handle navigation programmatically
-  const handleNavigate = (path: string) => {
-    // Ensure the hash is set correctly, starting with '#' to prevent
-    // potential browser-specific issues that might cause a page reload.
+  const handleNavigate = useCallback((path: string) => {
     // The path argument is expected to be like '/' or '/academy'.
-    window.location.hash = '#' + path;
-  };
+    // This creates a hash like '#/' or '#/academy'.
+    const newHash = '#' + path;
+    if (getNormalizedHash(window.location.hash) !== getNormalizedHash(newHash)) {
+        window.location.hash = newHash;
+    } else if (getNormalizedHash(window.location.hash) === '#/' && window.location.hash !== '#/') {
+        // If we are on a non-canonical home hash ('', '#') and navigating home,
+        // update hash to canonical '#/' to prevent inconsistencies.
+        window.location.hash = '#/';
+    }
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
-      setPage(getHash());
-       window.scrollTo(0, 0); // Scroll to top on page change
+      setPage(prevPage => {
+        const newHash = getNormalizedHash(window.location.hash);
+        return newHash === prevPage ? prevPage : newHash;
+      });
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -38,6 +78,20 @@ const App: React.FC = () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
+
+  // Effect to handle page transition animations
+  useEffect(() => {
+    if (page !== displayedPage) {
+      setAnimationClass('animate-fade-out');
+      const timer = setTimeout(() => {
+        setDisplayedPage(page);
+        window.scrollTo(0, 0); // Scroll to top after content change
+        setAnimationClass('animate-fade-in');
+      }, 300); // This duration must match the CSS animation duration
+
+      return () => clearTimeout(timer);
+    }
+  }, [page, displayedPage]);
 
   // Effect to handle scroll events for the 'Scroll to Top' button
   useEffect(() => {
@@ -85,17 +139,17 @@ const App: React.FC = () => {
     };
   });
 
-  const handleContentChange = (newContent: AppContent) => {
+  const handleContentChange = useCallback((newContent: AppContent) => {
     setContent(newContent);
     try {
         localStorage.setItem('aicoder-content', JSON.stringify(newContent));
     } catch(e) {
         console.error("Failed to save content to localStorage", e);
     }
-  };
+  }, []);
 
   const renderPage = () => {
-    switch (page) {
+    switch (displayedPage) {
       case '#/academy':
         return <Academy />;
       case '#/about-us':
@@ -106,12 +160,20 @@ const App: React.FC = () => {
         return <Contact />;
       case '#/':
       default:
+        // After normalization, '#/' is the only home page case.
+        // The default case handles unexpected hashes by showing the homepage.
         return (
           <main>
             <Hero content={content} onNavigate={handleNavigate} />
-            <Stats />
-            <Testimonials />
-            <Timeline />
+            <Suspense fallback={<SectionLoader />}>
+              <Stats />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Testimonials />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <Timeline />
+            </Suspense>
           </main>
         );
     }
@@ -122,13 +184,17 @@ const App: React.FC = () => {
       <ParticleBackground />
       {page === '#/admin' ? (
         <div className="relative z-10 flex-grow flex items-center justify-center p-4">
-            <Admin content={content} onContentChange={handleContentChange} />
+            <Suspense fallback={<PageLoader />}>
+                <Admin content={content} onContentChange={handleContentChange} />
+            </Suspense>
         </div>
       ) : (
         <>
           <Header onNavigate={handleNavigate} currentPage={page} />
-          <div className="relative z-10 flex-grow">
-            {renderPage()}
+          <div className={`relative z-10 flex-grow ${animationClass}`}>
+            <Suspense fallback={<PageLoader />}>
+              {renderPage()}
+            </Suspense>
           </div>
           <Footer />
         </>
