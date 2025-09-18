@@ -1,0 +1,60 @@
+import React from 'react';
+import { testimonials } from '../data/content';
+
+const AboutUs: React.FC = () => {
+  return (
+    <main className="pt-24 sm:pt-28 xl:pt-32 pb-12">
+      <div className="content-wrapper">
+        <div className="text-center max-w-3xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-[#E2E8F0]">
+            About AICoder Academy
+          </h1>
+          <p className="mt-4 text-lg text-[#94A3B8]">
+            Dedicated to the art and science of prompt engineering, shaping the future of human-AI collaboration.
+          </p>
+        </div>
+
+        <div className="mt-16 text-lg text-[#E2E8F0] space-y-6 max-w-4xl mx-auto leading-relaxed">
+            <p>
+                AICoder Academy was founded on the principle that the future of technology lies in the synergy between human ingenuity and artificial intelligence. Our mission is to demystify the complexities of AI and empower the next generation of pioneers, developers, and creators with the skills to effectively communicate with and command AI models.
+            </p>
+            <p>
+                We believe that prompt engineering is not just a technical skill but a new form of creative and logical expression. It's the key to unlocking the full potential of AI, turning abstract ideas into tangible results, from generating elegant code to creating breathtaking art.
+            </p>
+            <p>
+                Our vision is to build a global community of innovators who are not only proficient in AI technologies but are also mindful of the ethical responsibilities that come with them. We are committed to providing a world-class education that is accessible, practical, and constantly evolving with the rapid pace of the AI industry.
+            </p>
+        </div>
+
+        {/* Testimonials Section */}
+        <section className="mt-20 sm:mt-24">
+            <div className="text-center max-w-3xl mx-auto">
+                <h2 className="text-3xl sm:text-4xl font-semibold text-[#E2E8F0]">
+                    What Our Students Say
+                </h2>
+                <p className="mt-4 text-lg text-[#94A3B8]">
+                    Real stories from our graduates who are now shaping the future of AI.
+                </p>
+            </div>
+            <div className="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                {testimonials.map((testimonial, index) => (
+                    <div key={index} className="bg-slate-900/70 backdrop-blur-xl p-8 rounded-xl border border-slate-700 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] flex flex-col">
+                        <svg className="w-10 h-10 text-[#F97316] mb-4" viewBox="0 0 44 44" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.166 33.0002C13.208 33.0002 15.333 30.8752 15.333 27.8335C15.333 24.7918 13.208 22.6668 10.166 22.6668C8.91633 22.6668 7.33301 23.3752 6.50001 24.0835L4.66634 20.9168C6.16634 19.4168 8.41633 18.3335 11 18.3335C16.5 18.3335 21 22.5002 21 28.1668C21 33.8335 16.5 38.0002 11 38.0002C5.5 38.0002 1 33.8335 1 28.1668V11.0002H18.5V22.0002H10.166V33.0002ZM33.166 33.0002C36.208 33.0002 38.333 30.8752 38.333 27.8335C38.333 24.7918 36.208 22.6668 33.166 22.6668C31.9163 22.6668 30.333 23.3752 29.5 24.0835L27.6663 20.9168C29.1663 19.4168 31.4163 18.3335 34 18.3335C39.5 18.3335 44 22.5002 44 28.1668C44 33.8335 39.5 38.0002 34 38.0002C28.5 38.0002 24 33.8335 24 28.1668V11.0002H41.5V22.0002H33.166V33.0002Z"/>
+                        </svg>
+                        <p className="text-[#E2E8F0] italic flex-grow">"{testimonial.quote}"</p>
+                        <div className="mt-6 pt-6 border-t border-[#2A3B57]">
+                            <p className="font-bold text-[#E2E8F0]">{testimonial.name}</p>
+                            <p className="text-sm text-[#94A3B8]">{testimonial.role}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+      </div>
+    </main>
+  );
+};
+
+export default AboutUs;
