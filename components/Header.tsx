@@ -48,6 +48,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
             <a href="#/academy" onClick={(e) => { e.preventDefault(); onNavigate('/academy'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Academy</a>
             <a href="#/about-us" onClick={(e) => { e.preventDefault(); onNavigate('/about-us'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">About Us</a>
             <a href="#/team" onClick={(e) => { e.preventDefault(); onNavigate('/team'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Team</a>
+            <a href="#/faq" onClick={(e) => { e.preventDefault(); onNavigate('/faq'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">FAQ</a>
             <a href="#/contact" onClick={(e) => { e.preventDefault(); onNavigate('/contact'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Contact</a>
             <div className="w-px h-5 bg-[#2A3B57]"></div>
             <div className="flex items-center gap-1.5">
@@ -95,6 +96,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
           <a href="#/academy" onClick={(e) => { e.preventDefault(); handleMobileNav('/academy'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Academy</a>
           <a href="#/about-us" onClick={(e) => { e.preventDefault(); handleMobileNav('/about-us'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">About Us</a>
           <a href="#/team" onClick={(e) => { e.preventDefault(); handleMobileNav('/team'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Team</a>
+          <a href="#/faq" onClick={(e) => { e.preventDefault(); handleMobileNav('/faq'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">FAQ</a>
           <a href="#/contact" onClick={(e) => { e.preventDefault(); handleMobileNav('/contact'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Contact</a>
           <div className="pt-4">
              <div className="flex items-center gap-3 text-xl">

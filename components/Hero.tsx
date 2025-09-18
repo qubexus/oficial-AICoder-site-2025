@@ -242,16 +242,16 @@ const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
         <section className="pt-28 sm:pt-32 xl:pt-36 pb-12">
             <div className="content-wrapper">
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 xl:gap-16 items-center mb-12 sm:mb-16 xl:mb-20">
+                    <div className="text-left">
+                        <h2 className="text-4xl sm:text-5xl font-semibold text-[#E2E8F0] mb-6">
+                            {content.aboutTitle}
+                        </h2>
+                        <p className="text-lg md:text-xl text-[#94A3B8] leading-relaxed">
+                            {content.aboutDescription}
+                        </p>
+                    </div>
                     <div className="animate-gentle-float relative z-40">
                        <RobotGraphic />
-                    </div>
-                    <div className="text-lg md:text-xl text-[#E2E8F0] leading-relaxed text-left">
-                        <p className="mb-6 text-[#94A3B8]">
-                            AICoder is a personal initiative to dive deep into the world of AI-assisted software engineering. It serves as a blog, a portfolio, and a collection of open-source tools aimed at developers who are passionate about leveraging AI to create smarter, more efficient applications.
-                        </p>
-                        <p className="text-xl md:text-2xl font-semibold text-[#E2E8F0]">
-                            Code with Intelligence is more than a slogan—it's the guiding principle behind every project and article shared here. Join me on this journey to push the boundaries of what's possible with code.
-                        </p>
                     </div>
                 </div>
                 

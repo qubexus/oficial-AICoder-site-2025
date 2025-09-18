@@ -12,7 +12,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "@google/genai": "^1.19.0",
-    "react-syntax-highlighter": "^15.6.6"
+    "react-syntax-highlighter": "^15.6.6",
+    "react-error-boundary": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

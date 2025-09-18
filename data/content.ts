@@ -522,3 +522,73 @@ export const teamMembers = [
     imageUrl: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=75&w=400&auto=format&fit=crop&fm=webp',
   }
 ];
+
+// --- Data for Faq.tsx ---
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export const faqData: FaqItem[] = [
+  {
+    question: "What exactly is prompt engineering?",
+    answer: "Prompt engineering is the art and science of designing effective inputs (prompts) for AI models, like large language models (LLMs), to get desired outputs. It involves understanding how a model thinks, structuring questions clearly, and refining prompts to improve the accuracy, relevance, and quality of the AI's response. It's like learning how to have a productive conversation with an AI.",
+  },
+  {
+    question: "Why has prompt engineering become so important?",
+    answer: "As AI models become more powerful and integrated into various fields, the ability to communicate with them effectively is crucial. Good prompt engineering unlocks the full potential of these models, turning them from a novelty into a powerful tool for creativity, problem-solving, and automation. It's the key skill for leveraging the current generation of AI.",
+  },
+  {
+    question: "Do I need programming experience to join the academy?",
+    answer: "While some of our advanced tracks delve into coding and API integration, our foundational courses are designed for everyone, regardless of technical background. We believe prompt engineering is a fundamental skill for writers, marketers, designers, and business professionals, not just developers. We start with the basics of clear communication and logical structuring.",
+  },
+  {
+    question: "What makes AICoder Academy different from other online courses?",
+    answer: "Our academy focuses on a project-based learning approach. You won't just learn theory; you'll build a portfolio of real-world projects. We emphasize hands-on experience with a variety of leading AI models and provide career support to help you transition your new skills into the job market. Our curriculum is also constantly updated to keep pace with the fast-moving AI industry.",
+  },
+  {
+    question: "What kind of career opportunities can prompt engineering skills open up?",
+    answer: "Prompt engineering is a rapidly growing field with diverse opportunities. Graduates can pursue roles such as AI Content Creator, Prompt Engineer, AI Product Manager, AI Consultant, or specialize in using AI for specific domains like marketing, game design, or scientific research. It's also a valuable skill that enhances many existing roles, making you a more effective and efficient professional in your current field.",
+  }
+];
+
+// --- Data for Academy.tsx Learning Path ---
+export interface LearningPathItem {
+  id: number;
+  title: string;
+  description: string;
+  status: 'completed' | 'current' | 'upcoming';
+}
+
+export const learningPathData: LearningPathItem[] = [
+  {
+    id: 1,
+    title: "Module 1: Foundations of AI & LLMs",
+    description: "Understand the history of AI, what Large Language Models are, and the core concepts behind how they work.",
+    status: 'completed',
+  },
+  {
+    id: 2,
+    title: "Module 2: Core Prompt Engineering",
+    description: "Learn the art of crafting effective prompts, including techniques like zero-shot, few-shot, and chain-of-thought prompting.",
+    status: 'completed',
+  },
+  {
+    id: 3,
+    title: "Module 3: Advanced Techniques & Model Behavior",
+    description: "Dive deeper into controlling AI output, understanding model limitations, and advanced strategies for complex problem-solving.",
+    status: 'current',
+  },
+  {
+    id: 4,
+    title: "Module 4: Building with APIs & AI Agents",
+    description: "Integrate AI models into your own applications using APIs. Learn the principles of creating autonomous AI agents.",
+    status: 'upcoming',
+  },
+  {
+    id: 5,
+    title: "Module 5: Capstone Project",
+    description: "Apply all your skills to build a significant, portfolio-worthy project from scratch with mentorship from our instructors.",
+    status: 'upcoming',
+  }
+];
