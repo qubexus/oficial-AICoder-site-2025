@@ -83,11 +83,11 @@ interface AILogosProps {
 
 const AILogos: React.FC<AILogosProps> = ({ onModelClick }) => {
     return (
-        <div className="py-8">
+        <div className="py-8 px-4 sm:px-8">
              <h3 className="text-sm md:text-base font-semibold text-center text-[#E2E8F0] mb-8 uppercase tracking-wider">
                 Featuring Leading AI Models
              </h3>
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                  {aiModels.map(model => (
                     <MemoizedAIModelCard key={model.name} model={model} onModelClick={onModelClick} />
                  ))}

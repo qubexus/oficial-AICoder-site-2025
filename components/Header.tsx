@@ -8,6 +8,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isHomePage = currentPage === '#/';
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -37,15 +38,18 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-30 bg-slate-900/70 backdrop-blur-xl border-b border-slate-700 shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]">
-        <div className="content-wrapper h-24 flex justify-between items-center">
+        <div className={`content-wrapper h-14 flex justify-between items-center ${isHomePage ? 'px-8 sm:pl-16 sm:pr-24 lg:pl-[%] lg:pr-[10%]' : ''}`}>
           {/* Logo on the left */}
-          <a href="#/" onClick={(e) => { e.preventDefault(); onNavigate('/'); }} aria-label="AICoder Home">
+          <a href="#/" onClick={(e) => { e.preventDefault(); onNavigate('/'); }} aria-label="AICoder Home" className="relative" style={{ top: '1.75rem' }}>
             <LogoFull />
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex justify-end items-center gap-4 sm:gap-6 md:gap-8 text-sm sm:text-base xl:text-lg">
+          <nav className="hidden sm:flex justify-end items-center gap-2 sm:gap-3 md:gap-5 text-xs sm:text-sm xl:text-base">
             <a href="#/academy" onClick={(e) => { e.preventDefault(); onNavigate('/academy'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Academy</a>
+            <a href="#/blog" onClick={(e) => { e.preventDefault(); onNavigate('/blog'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Blog</a>
+            <a href="#/image-generator" onClick={(e) => { e.preventDefault(); onNavigate('/image-generator'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Image Gen</a>
+            <a href="#/technical-audit" onClick={(e) => { e.preventDefault(); onNavigate('/technical-audit'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Tech Audit</a>
             <a href="#/about-us" onClick={(e) => { e.preventDefault(); onNavigate('/about-us'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">About Us</a>
             <a href="#/team" onClick={(e) => { e.preventDefault(); onNavigate('/team'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Team</a>
             <a href="#/faq" onClick={(e) => { e.preventDefault(); onNavigate('/faq'); }} className="text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">FAQ</a>
@@ -59,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
           </nav>
           
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="sm:hidden">
             <button 
               onClick={() => setIsMenuOpen(true)} 
               className="text-slate-300 hover:text-[#F97316] transition-colors"
@@ -75,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-lg transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-lg transform transition-transform duration-300 ease-in-out sm:hidden ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
@@ -93,13 +97,16 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
             </button>
         </div>
         <nav className="flex flex-col items-center justify-center h-full text-center space-y-8">
-          <a href="#/academy" onClick={(e) => { e.preventDefault(); handleMobileNav('/academy'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Academy</a>
-          <a href="#/about-us" onClick={(e) => { e.preventDefault(); handleMobileNav('/about-us'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">About Us</a>
-          <a href="#/team" onClick={(e) => { e.preventDefault(); handleMobileNav('/team'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Team</a>
-          <a href="#/faq" onClick={(e) => { e.preventDefault(); handleMobileNav('/faq'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">FAQ</a>
-          <a href="#/contact" onClick={(e) => { e.preventDefault(); handleMobileNav('/contact'); }} className="text-3xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Contact</a>
+          <a href="#/academy" onClick={(e) => { e.preventDefault(); handleMobileNav('/academy'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Academy</a>
+          <a href="#/blog" onClick={(e) => { e.preventDefault(); handleMobileNav('/blog'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Blog</a>
+          <a href="#/image-generator" onClick={(e) => { e.preventDefault(); handleMobileNav('/image-generator'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Image Gen</a>
+          <a href="#/technical-audit" onClick={(e) => { e.preventDefault(); handleMobileNav('/technical-audit'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Tech Audit</a>
+          <a href="#/about-us" onClick={(e) => { e.preventDefault(); handleMobileNav('/about-us'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">About Us</a>
+          <a href="#/team" onClick={(e) => { e.preventDefault(); handleMobileNav('/team'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Team</a>
+          <a href="#/faq" onClick={(e) => { e.preventDefault(); handleMobileNav('/faq'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">FAQ</a>
+          <a href="#/contact" onClick={(e) => { e.preventDefault(); handleMobileNav('/contact'); }} className="text-2xl text-slate-300 hover:text-[#F97316] transition-colors duration-300 font-medium">Contact</a>
           <div className="pt-4">
-             <div className="flex items-center gap-3 text-xl">
+             <div className="flex items-center gap-3 text-base">
                 <button className="font-bold text-[#E2E8F0]">EN</button>
                 <span className="text-[#94A3B8]">/</span>
                 <button className="text-[#94A3B8] hover:text-[#E2E8F0] transition-colors duration-300">PL</button>

@@ -9,7 +9,7 @@ const AnimatedAicoderLogo: React.FC = () => {
 
                 .animated-logo-container {
                     font-family: 'Space Grotesk', sans-serif;
-                    font-size: clamp(3rem, 15vw, 8rem);
+                    font-size: clamp(3rem, 12vw, 6rem);
                     font-weight: 700;
                     letter-spacing: -0.05em;
                     color: #E2E8F0;
@@ -64,10 +64,10 @@ const AnimatedAicoderLogo: React.FC = () => {
                 `}
             </style>
             <div className="animated-logo-container">
-                <span className="base-text">AICoder</span>
-                <span className="layer layer-1" aria-hidden="true">AICoder</span>
-                <span className="layer layer-2" aria-hidden="true">AICoder</span>
-                <span className="layer layer-3" aria-hidden="true">AICoder</span>
+                <span className="base-text">Academy</span>
+                <span className="layer layer-1" aria-hidden="true">Academy</span>
+                <span className="layer layer-2" aria-hidden="true">Academy</span>
+                <span className="layer layer-3" aria-hidden="true">Academy</span>
             </div>
         </div>
     );
