@@ -117,9 +117,33 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigate }) => {
                     className="w-full h-auto max-h-[500px] object-cover rounded-xl mb-8 shadow-2xl"
                 />
 
-                <article className="prose prose-invert prose-lg max-w-none text-slate-300 leading-relaxed whitespace-pre-wrap">
+                <article className="prose prose-invert sm:prose-lg lg:prose-xl max-w-none text-slate-300 whitespace-pre-wrap">
                     {post.fullArticle}
                 </article>
+
+                <div className="mt-12 pt-8 border-t border-slate-700">
+                    <h3 className="text-2xl font-semibold text-slate-200 mb-4">About the Author</h3>
+                    <div className="flex flex-col sm:flex-row items-start gap-6 bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                        <img src={post.author.imageUrl} alt={post.author.name} className="w-24 h-24 rounded-full object-cover flex-shrink-0 border-2 border-slate-700"/>
+                        <div>
+                            <h4 className="text-xl font-bold text-[#E2E8F0]">{post.author.name}</h4>
+                            <p className="text-sm text-[#F97316] mb-3">{post.author.title}</p>
+                            <p className="text-slate-400 text-base mb-4">{post.author.bio}</p>
+                            <div className="flex items-center gap-4">
+                                {post.author.twitterUrl && (
+                                    <a href={post.author.twitterUrl} target="_blank" rel="noopener noreferrer" aria-label={`Follow ${post.author.name} on X/Twitter`} className="text-slate-400 hover:text-[#F97316] transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                                    </a>
+                                )}
+                                {post.author.linkedinUrl && (
+                                    <a href={post.author.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`Connect with ${post.author.name} on LinkedIn`} className="text-slate-400 hover:text-[#F97316] transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     );

@@ -97,8 +97,8 @@ const Timeline: React.FC = () => {
                 <div ref={timelineContainerRef} className="relative mt-20">
                     <div className="absolute left-1/2 -translate-x-1/2 top-0 bg-[#2A3B57] w-1 h-full" aria-hidden="true">
                        <div 
-                         className="bg-[#A78BFA] w-full" 
-                         style={{ height: `${lineHeight}%` }}
+                         className="bg-[#A78BFA] w-full h-full origin-top" 
+                         style={{ transform: `scaleY(${lineHeight / 100})`, willChange: 'transform' }}
                        ></div>
                     </div>
                     <div ref={itemsContainerRef}>

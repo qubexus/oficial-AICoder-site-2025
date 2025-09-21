@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import LogoFull from './LogoFull';
 
@@ -50,6 +51,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <a href="#/faq" onClick={(e) => handleNavigate(e, '/faq')} className="text-slate-400 hover:text-[#F97316] transition-colors">FAQ</a>
               <a href="#/contact" onClick={(e) => handleNavigate(e, '/contact')} className="text-slate-400 hover:text-[#F97316] transition-colors">Contact Us</a>
               <a href="#/about-us" onClick={(e) => handleNavigate(e, '/about-us')} className="text-slate-400 hover:text-[#F97316] transition-colors">About Us</a>
+              <a href="#/technical-audit" onClick={(e) => handleNavigate(e, '/technical-audit')} className="text-slate-400 hover:text-[#F97316] transition-colors">Technical Audit</a>
             </nav>
           </div>
 
