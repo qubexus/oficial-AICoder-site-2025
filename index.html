@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICoder - Code with Intelligence</title>
+    <link rel="icon" href="/assets/favicon-DqIs6yqP.svg" type="image/svg+xml">
+    <meta name="description" content="Join AICoder to master prompt engineering with expert instructors, hands-on projects, and career support. Shape the future of AI.">
+    <meta name="keywords" content="Prompt Engineering, AI, Artificial Intelligence, AICoder, Academy, Tech Education, Machine Learning">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #101827; /* Solid background for particle base */
+            color: #E2E8F0;
+        }
+        .font-space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .font-jetbrains-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Global Content Wrapper for Margins */
+        .content-wrapper {
+            width: 100%;
+            max-width: 1536px; /* A generous max-width for content */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: clamp(1rem, 5vw, 6rem);
+            padding-right: clamp(1rem, 5vw, 6rem);
+        }
+        
+        /* Homepage specific full-bleed layout */
+        .is-homepage .content-wrapper {
+            max-width: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        /* Modal Animations */
+        @keyframes enter {
+          from {
+            opacity: var(--tw-enter-opacity, 1);
+            transform: translate(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0)) scale(var(--tw-enter-scale, 1)) rotate(var(--tw-enter-rotate, 0));
+          }
+        }
+        @keyframes exit {
+          to {
+            opacity: var(--tw-exit-opacity, 1);
+            transform: translate(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0)) scale(var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
+          }
+        }
+        
+        .animate-in { animation: enter forwards; will-change: transform, opacity; }
+        .animate-out { animation: exit forwards; will-change: transform, opacity; }
+        
+        .fade-in-0 { --tw-enter-opacity: 0; }
+        .fade-out-0 { --tw-exit-opacity: 0; }
+        .slide-in-from-bottom-2 { --tw-enter-translate-y: 0.5rem; }
+        .slide-in-from-bottom-4 { --tw-enter-translate-y: 1rem; }
+        .zoom-in-95 { --tw-enter-scale: .95; }
+        .zoom-out-95 { --tw-exit-scale: .95; }
+
+        .duration-300 { animation-duration: 300ms; }
+        .duration-500 { animation-duration: 500ms; }
+        .ease-out { animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+        
+        /* More performant pulse animation using transform and opacity */
+        .pulse-effect {
+            position: relative;
+            z-index: 1; /* Ensure dot is above the pulse */
+        }
+        .pulse-effect::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background-color: #A78BFA;
+            z-index: -1; /* Place pulse behind the dot */
+            animation: subtle-pulse-transform 2s infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes subtle-pulse-transform {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            70% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Typing animation */
+        @keyframes typing {
+          from { width: 0 }
+          to { width: 100% }
+        }
+        @keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: #F97316; }
+        }
+        .typing-animation {
+          overflow: hidden; /* Ensures the content is not revealed until the animation */
+          border-right: .15em solid #F97316; /* The typwriter cursor */
+          white-space: nowrap; /* Keeps the content on a single line */
+          margin: 0 auto;
+          letter-spacing: .1em;
+          animation: 
+            typing 2.5s steps(22, end),
+            blink-caret .75s step-end infinite;
+        }
+
+        /* Page Transition Animations */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(1rem); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+          from { opacity: 1; transform: translateY(0); }
+          to { opacity: 0; transform: translateY(1rem); }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 300ms ease-out forwards;
+          will-change: transform, opacity;
+        }
+
+        .animate-fade-out {
+          animation: fadeOut 300ms ease-in forwards;
+          will-change: transform, opacity;
+        }
+    </style>
+
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+    "react/": "https://esm.sh/react@18.2.0/",
+    "@google/genai": "https://esm.sh/@google/genai@1.19.0",
+    "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/index.js",
+    "react-syntax-highlighter/dist/esm/styles/prism": "https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/styles/prism/index.js",
+    "react-syntax-highlighter/": "https://esm.sh/react-syntax-highlighter@15.6.6/",
+    "react-error-boundary": "https://esm.sh/react-error-boundary@6.0.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-JmityXJu.js"></script>
+</head>
+<body class="antialiased font-space-grotesk">
+    <div id="root"></div>
+</body>
+</html>
