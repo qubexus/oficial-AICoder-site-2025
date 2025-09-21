@@ -2,6 +2,9 @@ export interface BlogPostAuthor {
     name: string;
     imageUrl: string;
     title: string;
+    bio: string;
+    twitterUrl?: string;
+    linkedinUrl?: string;
 }
 
 export interface BlogPostItem {
@@ -20,17 +23,25 @@ const authors: Record<string, BlogPostAuthor> = {
     evelyn: {
         name: 'Dr. Evelyn Reed',
         imageUrl: 'https://picsum.photos/seed/evelyn/100',
-        title: 'Lead Instructor & AI Ethicist'
+        title: 'Lead Instructor & AI Ethicist',
+        bio: 'With a PhD in AI ethics, Evelyn ensures our curriculum is both cutting-edge and responsible. She is passionate about shaping a future where AI serves humanity.',
+        twitterUrl: '#',
+        linkedinUrl: '#',
     },
     kenji: {
         name: 'Kenji Tanaka',
         imageUrl: 'https://picsum.photos/seed/kenji/100',
-        title: 'Senior AI Engineer'
+        title: 'Senior AI Engineer',
+        bio: 'Kenji brings a decade of experience from top tech companies, specializing in model architecture and optimization. He loves demystifying complex technical topics.',
+        twitterUrl: '#',
+        linkedinUrl: '#',
     },
     fatima: {
         name: 'Fatima Ahmed',
         imageUrl: 'https://picsum.photos/seed/fatima/100',
-        title: 'Curriculum Developer'
+        title: 'Curriculum Developer',
+        bio: 'Fatima is an expert in pedagogy and prompt engineering, dedicated to creating engaging and effective learning experiences that empower students.',
+        linkedinUrl: '#',
     }
 }
 

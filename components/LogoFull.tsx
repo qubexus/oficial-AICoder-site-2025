@@ -29,6 +29,7 @@ const LogoFull: React.FC = () => {
                 position: relative;
                 display: inline-block;
                 font-family: 'Space Grotesk', sans-serif;
+                white-space: nowrap;
             }
             
             #aicoder-logo-component .ai-part {
@@ -79,6 +80,7 @@ const LogoFull: React.FC = () => {
                 box-shadow: 0 0 calc(2px * var(--scale-factor)) rgba(249, 115, 22, 0.4);
                 transform-origin: left center;
                 animation-fill-mode: both;
+                will-change: transform, opacity;
             }
             
             #aicoder-logo-component .circuit-dot {
@@ -91,6 +93,7 @@ const LogoFull: React.FC = () => {
                 opacity: 0;
                 transform: scale(0);
                 animation-fill-mode: both;
+                will-change: transform, opacity;
             }
 
             /* Animacja rozrastania się linii */
@@ -117,21 +120,6 @@ const LogoFull: React.FC = () => {
                 }
                 to {
                     transform: scale(1);
-                    opacity: 1;
-                }
-            }
-
-            /* Animacja rozszerzania obwodów na pozostałe litery */
-            @keyframes extendToOder {
-                0% {
-                    width: 0;
-                    opacity: 0;
-                }
-                50% {
-                    opacity: 0.6;
-                }
-                100% {
-                    width: var(--final-width);
                     opacity: 1;
                 }
             }
@@ -175,41 +163,6 @@ const LogoFull: React.FC = () => {
             #aicoder-logo-component .dot18 { top: calc(60px * var(--scale-factor)); left: calc(80px * var(--scale-factor)); animation: growDot 0.6s ease-out 3.7s;}
             #aicoder-logo-component .dot19 { top: calc(20px * var(--scale-factor)); left: calc(210px * var(--scale-factor)); animation: growDot 0.6s ease-out 3.8s;}
             #aicoder-logo-component .dot20 { top: calc(45px * var(--scale-factor)); left: calc(115px * var(--scale-factor)); animation: growDot 0.6s ease-out 3.9s;}
-
-            /* Dodatkowe linie rozszerzające się do "oder" */
-            #aicoder-logo-component .extension-line1,
-            #aicoder-logo-component .extension-line2,
-            #aicoder-logo-component .extension-line3 {
-                position: absolute;
-                background: linear-gradient(90deg, #F97316, rgba(249, 115, 22, 0.3));
-                height: calc(1px * var(--scale-factor));
-                border-radius: calc(1px * var(--scale-factor));
-                opacity: 0;
-            }
-
-            #aicoder-logo-component .extension-line1 {
-                top: calc(18px * var(--scale-factor));
-                left: calc(60px * var(--scale-factor));
-                width: 0;
-                animation: extendToOder 2s ease-out 3s forwards;
-                --final-width: calc(200px * var(--scale-factor)); /* Increased width */
-            }
-
-            #aicoder-logo-component .extension-line2 {
-                top: calc(30px * var(--scale-factor));
-                left: calc(60px * var(--scale-factor));
-                width: 0;
-                animation: extendToOder 2.2s ease-out 3.2s forwards;
-                --final-width: calc(180px * var(--scale-factor)); /* Increased width */
-            }
-
-            #aicoder-logo-component .extension-line3 {
-                top: calc(43px * var(--scale-factor));
-                left: calc(60px * var(--scale-factor));
-                width: 0;
-                animation: extendToOder 2.5s ease-out 3.4s forwards;
-                --final-width: calc(220px * var(--scale-factor)); /* Increased width */
-            }
 
             /* Animacja całego logo - delikatne pojawienie się */
             #aicoder-logo-component .main-logo {
@@ -310,7 +263,7 @@ const LogoFull: React.FC = () => {
                 #aicoder-logo-component .line2 { width: calc(1px * var(--scale-factor)); height: calc(8px * var(--scale-factor)); top: calc(5px * var(--scale-factor)); left: calc(13px * var(--scale-factor)); }
                 #aicoder-logo-component .line3 { width: calc(9px * var(--scale-factor)); height: calc(1px * var(--scale-factor)); top: calc(12px * var(--scale-factor)); left: calc(13px * var(--scale-factor)); }
                 #aicoder-logo-component .line4 { width: calc(10px * var(--scale-factor)); height: calc(1px * var(--scale-factor)); top: calc(18px * var(--scale-factor)); left: calc(4px * var(--scale-factor)); }
-                #aicoder-logo-component .line5 { width: calc(1px * var(--scale-factor)); height: calc(8px * var(--scale-factor)); top: calc(18px * var(--scale-factor)); left: calc(4px * var(--scale-factor)); }
+                #aicoder-logo-component .line5 { width: calc(1px * var(--scale-factor)); height: calc(1px * var(--scale-factor)); top: calc(18px * var(--scale-factor)); left: calc(4px * var(--scale-factor)); }
                 #aicoder-logo-component .line6 { width: calc(8px * var(--scale-factor)); height: calc(1px * var(--scale-factor)); top: calc(8px * var(--scale-factor)); left: calc(19px * var(--scale-factor)); }
                 #aicoder-logo-component .line7 { width: calc(1px * var(--scale-factor)); height: calc(6px * var(--scale-factor)); top: calc(19px * var(--scale-factor)); left: calc(15px * var(--scale-factor)); }
                 #aicoder-logo-component .line8 { width: calc(6px * var(--scale-factor)); height: calc(1px * var(--scale-factor)); top: calc(24px * var(--scale-factor)); left: calc(15px * var(--scale-factor)); }

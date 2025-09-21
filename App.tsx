@@ -1,3 +1,4 @@
+// FIX: Corrected import for Suspense from 'react'
 import React, { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import Header from './components/Header';
@@ -18,6 +19,7 @@ const TechnicalAudit = React.lazy(() => import('./site/TechnicalAudit'));
 const FAQTeaser = React.lazy(() => import('./components/FAQTeaser'));
 const Blog = React.lazy(() => import('./site/Blog'));
 const BlogPost = React.lazy(() => import('./site/BlogPost'));
+const AILogos = React.lazy(() => import('./components/AILogos'));
 
 // Default content
 const defaultContent: AppContent = {
@@ -33,7 +35,7 @@ const defaultContent: AppContent = {
 // Loaders
 const PageLoader = React.memo(() => (
   <div className="flex justify-center items-center min-h-[calc(100vh-12rem)]" role="status" aria-label="Loading page content">
-    <svg className="animate-spin h-16 w-16 text-[#F97316]" xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <svg className="animate-spin h-16 w-16 text-[#F97316]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
     </svg>
@@ -42,7 +44,7 @@ const PageLoader = React.memo(() => (
 
 const SectionLoader = React.memo(() => (
   <div className="flex justify-center items-center min-h-[50vh]" role="status" aria-label="Loading section content">
-    <svg className="animate-spin h-12 w-12 text-[#F97316]" xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <svg className="animate-spin h-12 w-12 text-[#F97316]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
     </svg>
@@ -199,6 +201,9 @@ const App: React.FC = () => {
     return (
       <main>
         <Hero content={content} onNavigate={navigate} />
+        <Suspense fallback={<SectionLoader />}>
+            <AILogos />
+        </Suspense>
       </main>
     );
   }, [displayedPage, content, navigate]);
@@ -222,7 +227,7 @@ const App: React.FC = () => {
         <div className="relative z-10 flex-grow flex items-center justify-center p-4">
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<PageLoader />}>
-              <Admin content={content} onContentChange={handleContentChange} />
+              <Admin content={content} onContentChange={handleContentChange} onNavigate={navigate} />
             </Suspense>
           </ErrorBoundary>
         </div>
