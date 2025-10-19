@@ -5,11 +5,17 @@ import type { AppContent } from '../types';
 interface AdminProps {
   content: AppContent;
   onContentChange: (newContent: AppContent) => void;
+  onNavigate: (path: string) => void;
 }
 
-const Admin: React.FC<AdminProps> = ({ content, onContentChange }) => {
+const Admin: React.FC<AdminProps> = ({ content, onContentChange, onNavigate }) => {
   const [localContent, setLocalContent] = useState(content);
   const [isSaved, setIsSaved] = useState(false);
+
+  const handleNavigate = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    onNavigate(path);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -146,7 +152,7 @@ const Admin: React.FC<AdminProps> = ({ content, onContentChange }) => {
         </section>
 
         <div className="flex items-center justify-between pt-4">
-            <a href="#/" className="text-sm font-bold text-[#F97316] hover:underline hover:brightness-125 transition-all duration-300 group">
+            <a href="#/" onClick={(e) => handleNavigate(e, '/')} className="text-sm font-bold text-[#F97316] hover:underline hover:brightness-125 transition-all duration-300 group">
               &larr; <span className="inline-block transition-transform group-hover:-translate-x-1">Back to Home</span>
             </a>
             <div className="flex items-center gap-4">

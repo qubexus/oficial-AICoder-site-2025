@@ -17,7 +17,7 @@ const FeaturedContent: React.FC<FeaturedContentProps> = ({ onNavigate }) => {
 
   return (
     <section ref={ref} className="py-20 sm:py-24">
-      <div className="content-wrapper">
+      <div className="content-wrapper px-4 sm:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-semibold text-[#E2E8F0]">
             Featured Content

@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect } from 'react';
 
 const ParticleBackground: React.FC = () => {
@@ -40,7 +41,9 @@ const ParticleBackground: React.FC = () => {
         // Use window/document for events since canvas is in the background and won't receive them
         window.addEventListener('resize', handleResize);
         window.addEventListener('mousemove', handleMouseMove);
-        document.body.addEventListener('mouseleave', handleMouseLeave);
+        if (document.body) {
+            document.body.addEventListener('mouseleave', handleMouseLeave);
+        }
 
 
         class Particle {
@@ -155,7 +158,9 @@ const ParticleBackground: React.FC = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
-            document.body.removeEventListener('mouseleave', handleMouseLeave);
+            if (document.body) {
+                document.body.removeEventListener('mouseleave', handleMouseLeave);
+            }
             document.removeEventListener('visibilitychange', handleVisibilityChange);
             cancelAnimationFrame(animationFrameId);
         };
